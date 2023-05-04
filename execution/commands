@@ -1,0 +1,80 @@
+#!/bin/bash
+
+echo "Demo commands loaded. For a list of available commands, type 'commands'."
+
+# Create commands (functions) to call from terminal.
+
+source ../catkin_ws_offboard/devel/setup.bash;
+
+stop() {
+    rostopic pub --once '/fsm/task' std_msgs/String "stop"
+}
+
+p2p() {
+    rostopic pub --once '/fsm/task' std_msgs/String "point to point"
+    rostopic pub --once '/motionplanner/relative_goal' truck_trailer_amr/TruckTrailerAmrState '{px1: '$1', py1: '$2', theta1: '$3', theta0: '$4'}'
+}
+
+p2pgoal() {
+    rostopic pub --once '/motionplanner/relative_goal' truck_trailer_amr/TruckTrailerAmrState '{px1: '$1', py1: '$2', theta1: '$3', theta0: '$4'}'
+}
+
+multistage() {
+    rostopic pub --once '/fsm/task' std_msgs/String "warehouse drive multistage"
+    start
+}
+
+start() {
+    rostopic pub --once '/fsm/trigger_mp_drive' std_msgs/Empty
+}
+
+idvel() {
+  rostopic pub --once '/fsm/task' std_msgs/String "identify velocity"
+}
+
+ff_traj(){
+  rostopic pub --once '/fsm/task' std_msgs/String "execute feedforward traj"
+}
+
+fb_test(){
+  rostopic pub --once '/fsm/task' std_msgs/String "test feedback control"
+}
+
+wheel_slip_test(){
+  rostopic pub --once '/fsm/task' std_msgs/String "test wheel slip"
+}
+
+reset_sim(){
+  rostopic pub --once '/simulator/reset' std_msgs/Empty
+}
+
+calibrate_angle_encoder(){
+  rostopic pub --once '/angle_encoder/reset_encoder' std_msgs/Empty
+}
+
+calibrate_vive(){
+    # rostopic pub --once '/vive_localization/calibrate' std_msgs/Empty
+    rostopic pub --once '/vive_localization/calibrate_three_points' std_msgs/Empty
+}
+
+proceed_vive_calibration(){
+    rostopic pub --once '/vive_localization/proceed_calibration' std_msgs/Empty
+}
+
+update_rosparams(){
+    rosparam delete /controller/
+    rosparam delete /motionplanner/
+    rosparam load ../catkin_ws/src/truck_trailer_amr/config/controller_config.yaml /controller/
+    rosparam load ../catkin_ws/src/truck_trailer_amr/config/motionplanner_config.yaml /motionplanner/
+    rostopic pub --once '/fsm/update_rosparams' std_msgs/Empty
+}
+
+clear_corridors(){
+    rosparam delete /route/
+}
+
+
+commands() {
+  echo "The available commands are:"
+  echo "multistage - start - stop - calibrate_vive - proceed_vive_calibration - calibrate_angle_encoder - p2p - p2pgoal - fb_test - update_rosparams - clear_corridors"
+}

@@ -1,0 +1,60 @@
+#!/bin/bash
+
+# Check correct call of this script. Should be called with "source run_sim"
+# and not ./run_sim to enable terminal commands.
+if [[ "${BASH_SOURCE[0]}" != "${0}" ]]
+then
+    clear
+    echo "TRUCK-TRAILER AMR DEMO STARTING..."
+    echo "
+
+                      .&@@@@%(///#&@@@@/
+                  @@@                    .@@*
+               @@                            /@#
+            ,@/          *@         &@          @@
+           @(         (@@             %@@         @@
+         /@         *@ /                %@@@       #@
+        *@        &@%/@@@.            @@@@ @@.      (@
+        @.      @@       @@@       .@@&      /@*     @%
+       /@                  @@@@@@@@@&                ,@
+       &@                  .@@@@@@@@                  @
+       *@                  #@@@@@@@@                 *@
+        @,     @%        .@@(@@@@@(@@@         @.    @#
+        .@       %@@   @@@           %@@/  ,@@      &@
+         .@         &#@@               &%,*#       @@
+           @&       &/@@               %@*/#      @(
+             @&         &@,          @@,        @&
+               @@,         (       @         @@,
+                  (@@,                   &@@
+                       *@@@@@@&&@@@@@@%
+
+                       MECO RESEARCH TEAM
+                            KU LEUVEN
+                                            "
+else
+    echo "ERROR: Script is a subshell"
+    echo "To enable commands in your current shell enviroment, source this script with:"
+    echo "source run_sim"
+    exit
+fi
+
+ gnome-terminal\
+ -- /bin/bash -c "source rosexport_offboard; cd ../catkin_ws_offboard; source devel/setup.bash; sleep 2; rviz -d ../catkin_ws_offboard/src/truck_trailer_amr/config/sim_demo.rviz; exec bash -i"
+ gnome-terminal\
+ -- /bin/bash -c "source rosexport_offboard; cd ../catkin_ws_offboard; source devel/setup.bash; sleep 2; roslaunch vive_localization localization.launch; exec bash -i"
+ gnome-terminal\
+ -- /bin/bash -c "source rosexport_offboard; cd ../catkin_ws_offboard; source devel/setup.bash; sleep 2; roslaunch rviz_floor_map map.launch; exec bash -i"
+ gnome-terminal\
+  -- /bin/bash -c "source rosexport_offboard; cd ../catkin_ws_offboard; source devel/setup.bash; sleep 2; roslaunch truck_trailer_amr demo.launch; exec bash -i"
+
+# If you prefer tabs within the same terminal window over all new terminal windows.
+#  gnome-terminal\
+#  --tab -- /bin/bash -c "source rosexport_offboard; cd ../catkin_ws_offboard; source devel/setup.bash; sleep 2; rviz"
+#  gnome-terminal\
+#  --tab -- /bin/bash -c "source rosexport_offboard; cd ../catkin_ws_offboard; source devel/setup.bash; sleep 2; roslaunch vive_localization localization.launch"
+#  gnome-terminal\
+#  --tab -- /bin/bash -c "source rosexport_offboard; cd ../catkin_ws_offboard; source devel/setup.bash; sleep 2; roslaunch rviz_floor_map map.launch"
+
+
+source rosexport_offboard
+source commands

@@ -1,0 +1,12 @@
+[submodule "catkin_ws_onboard/src/catkin_ws_onboard/src/kelo_tulip"]
+	path = catkin_ws_onboard/src/catkin_ws_onboard/src/kelo_tulip
+	url = https://github.com/kelo-robotics/kelo_tulip.git
+[submodule "catkin_ws_offboard/src/catkin_ws_offboard/src/vive_localization"]
+	path = catkin_ws_offboard/src/catkin_ws_offboard/src/vive_localization
+	url = https://gitlab.kuleuven.be/meco-setups/vive_localization.git
+[submodule "catkin_ws_offboard/src/vive_localization"]
+	path = catkin_ws_offboard/src/vive_localization
+	url = https://gitlab.kuleuven.be/meco-setups/vive_localization.git
+[submodule "catkin_ws_onboard/src/kelo-tulip"]
+	path = catkin_ws_onboard/src/kelo-tulip
+	url = https://gitlab.kuleuven.be/meco-setups/kelo-tulip.git

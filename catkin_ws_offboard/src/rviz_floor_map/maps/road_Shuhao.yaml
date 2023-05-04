@@ -1,0 +1,6 @@
+image: /truck-trailer-amr/catkin_ws_offboard/src/rviz_floor_map/maps/road_Shuhao.pgm
+resolution: 0.001
+origin: [-1.0,-0.5, 0.000000]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196

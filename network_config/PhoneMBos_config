@@ -1,0 +1,5 @@
+# Phone hotspot
+# -------------
+export laptop_ip=192.168.43.44
+export tx2_ip=192.168.43.81
+export odroid_ip=192.168.43.81

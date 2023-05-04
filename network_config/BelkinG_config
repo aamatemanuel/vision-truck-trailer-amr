@@ -1,0 +1,5 @@
+# BelkinG Wi-fi network
+# ---------------------
+export laptop_ip=192.168.2.6
+export odroid_ip=192.168.2.5
+export tx2_ip=192.168.2.4

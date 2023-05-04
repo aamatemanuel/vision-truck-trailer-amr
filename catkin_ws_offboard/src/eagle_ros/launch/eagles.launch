@@ -1,0 +1,3 @@
+</node>
+<node name="eagle_ros" pkg="eagle_ros" type="eagles.py" output="screen">
+</node>

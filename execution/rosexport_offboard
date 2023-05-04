@@ -1,0 +1,10 @@
+if [[ "${BASH_SOURCE[0]}" != "${0}" ]]
+then
+    source ../network_config/BelkinG_config
+    export ROS_IP=$laptop_ip; export ROS_HOSTNAME=$laptop_ip; export ROS_MASTER_URI=http://$odroid_ip:11311;
+else
+    echo "ERROR: Script is a subshell"
+    echo "To enable commands in your current shell enviroment, source this script with:"
+    echo "source rosexport_offboard"
+    exit
+ fi

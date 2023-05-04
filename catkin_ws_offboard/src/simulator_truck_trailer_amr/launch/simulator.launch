@@ -1,0 +1,12 @@
+<launch>
+
+  <node name="simulator" pkg="simulator_truck_trailer_amr" type="simulator_ros.py" output="screen" >
+      <rosparam command="load" file="$(find simulator_truck_trailer_amr)/config/sim_params.yaml" />
+  </node>
+
+  <!-- Careful, these two sample times MUST correspond to the /simulator/update_rate.
+       These values have no function in the simulator, they only replace the params that would
+       be set when using the physical AMR. -->
+  <param name="/vive_localization/sample_time" value="0.01" />
+  <param name="/angle_encoder/sample_time" value="0.01" />
+</launch>

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+clear
+echo "Starting docker container..."
+
+
+# Start docker container
+xhost +local:docker
+
+docker run -it --rm --env="DISPLAY=$DISPLAY" --env="QT_X11_NO_MITSHM=1" --net=host --privileged ttamr
+# docker run -it --env="DISPLAY=$DISPLAY" --env="QT_X11_NO_MITSHM=1" --net=host --privileged ttamr bash
+# docker run -it --env="DISPLAY=$DISPLAY" --env="QT_X11_NO_MITSHM=1" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" --env="XAUTHORITY=$XAUTH" --volume="$XAUTH:$XAUTH" --net=host --privileged ttamr ${1:-}    

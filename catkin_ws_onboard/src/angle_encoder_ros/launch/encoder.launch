@@ -1,0 +1,8 @@
+<launch>
+
+  <node name="angle_encoder" pkg="angle_encoder_ros" type="encoder.py" output="screen" >
+      <param name="/angle_encoder/sample_time" value="0.02" />
+
+  </node>
+
+</launch>

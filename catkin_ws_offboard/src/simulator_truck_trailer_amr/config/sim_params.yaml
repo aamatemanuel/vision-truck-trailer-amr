@@ -1,0 +1,19 @@
+num_trailers: 2
+
+truck:
+  L: 0.3375
+  M: 0.1
+  W: 0.2
+
+trailer1:
+  L: 0.405
+  M: 0.06
+  W: 0.2
+
+update_rate: 100.
+
+init_cond:
+    px1: 0.0
+    py1: 0.0
+    theta1: 0.0
+    theta0: 0.0

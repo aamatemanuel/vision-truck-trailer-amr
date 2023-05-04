@@ -1,0 +1,68 @@
+#!/bin/bash
+
+# Check correct call of this script. Should be called with "source run_sim"
+# and not ./run_sim to enable terminal commands.
+if [[ "${BASH_SOURCE[0]}" != "${0}" ]]
+then
+    clear
+    echo "TRUCK TRAILER AMR DEMO STARTING..."
+    echo "
+
+                      .&@@@@%(///#&@@@@/
+                  @@@                    .@@*
+               @@                            /@#
+            ,@/          *@         &@          @@
+           @(         (@@             %@@         @@
+         /@         *@ /                %@@@       #@
+        *@        &@%/@@@.            @@@@ @@.      (@
+        @.      @@       @@@       .@@&      /@*     @%
+       /@                  @@@@@@@@@&                ,@
+       &@                  .@@@@@@@@                  @
+       *@                  #@@@@@@@@                 *@
+        @,     @%        .@@(@@@@@(@@@         @.    @#
+        .@       %@@   @@@           %@@/  ,@@      &@
+         .@         &#@@               &%,*#       @@
+           @&       &/@@               %@*/#      @(
+             @&         &@,          @@,        @&
+               @@,         (       @         @@,
+                  (@@,                   &@@
+                       *@@@@@@&&@@@@@@%
+
+                       MECO RESEARCH TEAM
+                            KU LEUVEN
+                                            "
+else
+    echo "ERROR: Script is a subshell"
+    echo "To enable commands in your current shell enviroment, source this script with:"
+    echo "source run_sim"
+    exit
+fi
+
+export ROS_HOSTNAME=localhost; export ROS_MASTER_URI=http://localhost:11311
+
+
+gnome-terminal\
+ -- /bin/bash -c "roscore; exec bash -i"
+gnome-terminal\
+ -- /bin/bash -c "cd ../catkin_ws_offboard; source devel/setup.bash; sleep 2; roslaunch simulator_truck_trailer_amr simulator.launch; exec bash -i"
+gnome-terminal\
+ -- /bin/bash -c "cd ../catkin_ws_offboard; source devel/setup.bash; sleep 2; rviz -d ../catkin_ws_offboard/src/truck_trailer_amr/config/sim_demo.rviz; exec bash -i"
+gnome-terminal\
+ -- /bin/bash -c "cd ../catkin_ws_offboard; source devel/setup.bash; sleep 2; roslaunch rviz_floor_map map.launch; exec bash -i"
+gnome-terminal\
+ -- /bin/bash -c "cd ../catkin_ws_offboard; source devel/setup.bash; sleep 2; roslaunch truck_trailer_amr sim_demo.launch; exec bash -i"
+
+source commands
+
+
+# gnome-terminal\
+#  --tab -- /bin/bash -c "roscore"
+#  gnome-terminal\
+#  --tab -- /bin/bash -c "cd ../catkin_ws_offboard; source devel/setup.bash; sleep 2; roslaunch simulator_truck_trailer_amr simulator.launch; exec bash -i"
+#  gnome-terminal\
+#  --tab -- /bin/bash -c "cd ../catkin_ws_offboard; source devel/setup.bash; sleep 2; rviz; exec bash -i"
+#  gnome-terminal\
+#  --tab -- /bin/bash -c "cd ../catkin_ws_offboard; source devel/setup.bash; sleep 2; roslaunch rviz_floor_map map.launch; exec bash -i"
+#   gnome-terminal\
+#   --tab -- /bin/bash -c "cd ../catkin_ws_offboard; source devel/setup.bash; sleep 2; roslaunch truck_trailer_amr sim_demo.launch; exec bash -i"
+

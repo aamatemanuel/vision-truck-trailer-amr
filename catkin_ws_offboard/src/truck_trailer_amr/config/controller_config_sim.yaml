@@ -1,0 +1,124 @@
+# Parameters for controller node.
+
+record_directory: "/home/mathias/Documents/recordings/"
+localization_system: "HTC Vive" # "Eagles"
+plot_stages: True
+relative_p2p_goal: True
+sample_time: 0.04
+mp_computation_timeout: 10.
+service_timeout: 10.
+mp_update_point: "Fixed index" # "closest distance" # "closest time"
+mp_update_index: 60  # The amount of samples in the future where ASAP MPC will sample the mp trigger.
+goal_reached_pos_tol: 0.1
+goal_reached_orient_tol: 0.1
+max_v_wheel_input: 0.5
+max_omega_input: 1.
+jackknife_threshold: 0.9  # Must be higher than beta01_max in motionplanner(_multistage)_config.yaml
+
+encoder_speed:
+    butter_order: 1.
+    butter_cutoff: 10.
+
+
+trailer_speed:
+    butter_order: 1.
+    butter_cutoff: 1.
+
+# Good for v = -0.8
+# Kfb_trailer_backward:
+#     - - 1.
+#       - 0.
+#       - 0.
+#     - - 0.
+#       - -5.
+#       - 5.
+
+# Good for v = -1.
+# Kfb_trailer_backward:
+#     - - 1.
+#       - 0.
+#       - 0.
+#     - - 0.
+#       - -7.
+#       - 7.
+
+# v = -0.1
+Kfb_trailer_backward:
+    - - 1.
+      - 0.
+      - 0.
+    - - 0.
+      - -7.
+      - 7.
+
+
+# v = 0.8
+# Kfb_trailer_forward:
+#     - - 1.
+#       - 0.
+#       - 0.
+#     - - 0.
+#       - 0.1
+#       - 0.2
+
+# v = 0.5
+# Kfb_trailer_forward:
+#     - - 1.
+#       - 0.
+#       - 0.
+#     - - 0.
+#       - 0.05
+#       - 0.1
+
+# v = 0.1
+# Kfb_trailer_forward:
+#     - - 0.05
+#       - 0.
+#       - 0.
+#     - - 0.
+#       - 0.005
+#       - 0.01
+
+# v = 1.
+Kfb_trailer_forward:
+    - - 1.
+      - 0.
+      - 0.
+    - - 0.
+      - 0.2
+      - 0.4
+
+
+
+# Must be high enough - but not over saturation
+Kfb_truck: [20., 0.]
+# Kfb_amr: 20.
+
+
+### Kfb trailer coefficients for gain scheduling as function of ff velocity
+Kfb_coeffs_pos:
+- - - 1.0555555555555556
+    - -0.05555555555555556
+  - - 0.0
+    - 0.0
+  - - 0.0
+    - 0.0
+- - - 0.0
+    - 0.0
+  - - 0.21666666666666667
+    - -0.01666666666666667
+  - - 0.43333333333333335
+    - -0.03333333333333334
+Kfb_coeffs_neg:
+- - - -0.0
+    - 1.0
+  - - -0.0
+    - -0.0
+  - - -0.0
+    - -0.0
+- - - -0.0
+    - -0.0
+  - - 5.555555555555555
+    - -1.4444444444444442
+  - - -5.555555555555555
+    - 1.4444444444444442

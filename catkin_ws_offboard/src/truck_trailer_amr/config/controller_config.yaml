@@ -1,0 +1,98 @@
+# Parameters for controller node.
+
+record_directory: "/home/mathias/Documents/recordings/"
+localization_system: "HTC Vive" # "Eagles"
+plot_stages: True
+relative_p2p_goal: True
+# sample_time: 0.04
+sample_time: 0.02
+# sample_time: 0.1
+mp_computation_timeout: 10.
+service_timeout: 10.
+mp_update_point: "Fixed index" # "closest distance" # "closest time"
+mp_update_index: 80  # The amount of samples in the future where ASAP MPC will sample the mp trigger.
+goal_reached_pos_tol: 0.1
+goal_reached_orient_tol: 0.1
+max_v_wheel_input: 0.5
+max_omega_input: 1.
+jackknife_threshold: 1.  # Must be higher than beta01_max in motionplanner(_multistage)_config.yaml
+
+encoder_speed:
+    butter_order: 1.
+    butter_cutoff: 1.
+
+trailer_speed:
+    butter_order: 1.
+    butter_cutoff: 1.
+
+
+# # v = -0.2
+# Kfb_trailer_backward:
+#     - - 1.
+#       - 0.
+#       - 0.
+#     - - 0.
+#       - -0.1
+#       - 0.2
+
+# v = -0.1
+# Kfb_trailer_backward:
+#     - - 1.
+#       - 0.
+#       - 0.
+#     - - 0.
+#       - -0.2
+#       - 0.2
+
+# v = 0.1
+# Kfb_trailer_forward:
+#     - - 0.05
+#       - 0.
+#       - 0.
+#     - - 0.
+#       - 0.005
+#       - 0.01
+
+# v = 0.5
+Kfb_trailer_forward:
+    - - 0.5
+      - 0.
+      - 0.
+    - - 0.
+      - 0.05
+      - 0.1
+
+
+# Must be high enough - but not over saturation
+# Kfb_amr: 20.
+# Kfb_amr: [20., 3.]
+Kfb_truck: [20., 5.]
+
+
+### Kfb trailer coefficients for gain scheduling as function of ff velocity
+Kfb_coeffs_pos:
+- - - 0.3375
+    - -0.01875
+  - - 0.0
+    - 0.0
+  - - 0.0
+    - 0.0
+- - - 0.0
+    - 0.0
+  - - 0.2925
+    - -0.016250000000000004
+  - - 2.025
+    - -0.11250000000000003
+Kfb_coeffs_neg:
+- - - -0.0
+    - 0.6999999999999998
+  - - -0.0
+    - -0.0
+  - - -0.0
+    - -0.0
+- - - -0.0
+    - -0.0
+  - - 1.0
+    - -0.0
+  - - -0.0
+    - 0.15

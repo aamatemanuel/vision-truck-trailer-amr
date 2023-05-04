@@ -1,0 +1,26 @@
+# Compilation related
+build/
+devel/
+logs/
+.catkin_tools/
+
+*.pyc
+#*.png
+*.gif
+*.csv
+#*.bag
+*.json
+*.jpg
+
+# jit compiled binaries
+*.o
+*.so
+
+# Built Singularity image
+*.sif
+
+# HSL binaries
+hsl/
+*.la
+*.0
+hsl/pkgconfig/

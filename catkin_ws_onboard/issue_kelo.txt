@@ -1,0 +1,23 @@
+Initializing EtherCAT on eth0
+slave 1 has id = 33558529
+Found slaves: 1, 1
+Wheel #0 is slave #1
+1 EtherCAT slaves found and configured.
+Request operational state for all EtherCAT slaves
+Operational state reached for all EtherCAT slaves.
+Slave: 1 Name: KELOD105 Output size: 288bits Input size: 1376bits State: 2 delay: 0
+Smartwheel WKC changed from 0 to -1
+Smartwheel WKC changed from -1 to 3
+Set new expected wkc=3
+Status error: wheel=0, status1=60, status2=2051, state=1
+[FATAL] [1651656361.467541309]: ASSERTION FAILED
+	file = /opt/ros/noetic/include/ros/publisher.h
+	line = 107
+	cond = false
+	message = 
+[FATAL] [1651656361.470320726]: Call to publish() on an invalid Publisher
+[FATAL] [1651656361.470399767]: 
+
+[platform_driver-2] process has died [pid 1164, exit code -6, cmd /home/odroid/Documents/trailer-agv-multistage/catkin_ws_onboard/devel/lib/kelo_tulip/platform_driver __name:=platform_driver __log:=/home/odroid/.ros/log/560395de-cb87-11ec-9d73-74da38c81fe8/platform_driver-2.log].
+log file: /home/odroid/.ros/log/560395de-cb87-11ec-9d73-74da38c81fe8/platform_driver-2*.log
+

@@ -1,0 +1,55 @@
+# Parameters for motion planner node.
+show_computation_time_stats: False
+
+vehicles:
+    num_trailers: 1
+
+    beta01_max: 0.6
+
+    truck:
+      L: 0.3375   # Measured value: 0.332 m
+      M: 0.1      # Measured value: 0.096 m
+      W: 0.2
+      safety_dist: 0.3
+      sd_weight: 5.
+
+      v0_min: -0.1
+      v0_max: 0.3
+      dv0_min: -0.05
+      dv0_max: .1
+      # omega0_max: 0.314
+      # omega0_max: 0.200
+      domega0_max: 0.1
+
+    trailer1:
+      L: 0.405    # Measured value: 0.369 m
+      M: 0.06
+      W: 0.2
+      safety_dist: 0.3
+      sd_weight: 5.
+
+
+environment:
+  min_alt: 0.2
+  room_size:
+      width: 20.
+      depth: 20.
+      height: 10.
+  room_center:
+      x: 0.
+      y: 0.
+
+opti:
+  N_1: 10
+  M_1: 1
+  T_1: 10.
+  N_2: 10
+  M_2: 1
+  T_2: 10.
+  N_3: 10
+  M_3: 1
+  T_3: 10.
+  # Control input penalization
+  R: [0, 0]
+  # Control input rate penalization
+  Rdot: [0., 0.]

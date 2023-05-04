@@ -1,0 +1,23 @@
+<launch>
+
+  <node name="fsm" pkg="truck_trailer_amr" type="fsm.py" output="screen" >
+      <param name="monitor_rate" value="10." />
+  </node>
+  <node name="controller" pkg="truck_trailer_amr" type="controller.py" output="screen">
+    <rosparam command="load" file="$(find truck_trailer_amr)/config/controller_config_sim.yaml" />
+  </node>
+  <node name="motionplanner" pkg="truck_trailer_amr" type="motionplanner_multistage.py" output="screen">
+    <rosparam command="load" file="$(find truck_trailer_amr)/config/motionplanner_multistage_config.yaml" />
+  </node>
+
+  <!-- <rosparam command="load" file="$(find truck_trailer_amr)/config/corridors_clicked.yaml" /> -->
+  <rosparam command="load" file="$(find truck_trailer_amr)/config/corridors.yaml" />
+
+  <!-- <include file="$(find eagle_ros)/launch/eagles.launch">
+  </include>
+  <include file="$(find vive_localization)/launch/localization.launch">
+  </include> -->
+
+
+
+</launch>

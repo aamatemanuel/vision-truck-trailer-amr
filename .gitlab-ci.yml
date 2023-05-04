@@ -1,0 +1,37 @@
+stages:
+  - docs
+  - publish
+
+docs:
+  stage: docs
+  image: bosm16/truck-trailer-amr
+  before_script:
+    - pip install --upgrade docutils
+    - pip install --upgrade sphinx-rtd-theme
+    - pip install --upgrade multipledispatch
+  script:
+    - source /opt/ros/noetic/setup.bash
+    - cd catkin_ws_offboard && catkin build && source devel/setup.bash
+    - cd ../catkin_ws_onboard && catkin build && source devel/setup.bash
+    - cd ../docs && make html
+
+  artifacts:
+    paths:
+      - docs/build
+  only:
+    - main
+
+pages:
+  stage: publish
+  tags:
+    - pages
+  dependencies:
+    - docs
+  script:
+    - mkdir public
+    - cp -R ./docs/build/html/* ./public/
+  artifacts:
+    paths:
+      - public
+  only:
+    - main
